@@ -9,41 +9,41 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FaceRecognition
 build_property.RootNamespace = FaceRecognition
-build_property.ProjectDir = C:\Users\Utente\Desktop\.NET\Volantini\trunk\FaceRecognition\
+build_property.ProjectDir = C:\Users\Utente\Desktop\.NET\Volantini\trunk\FaceRecognition\Volantini\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Utente\Desktop\.NET\Volantini\trunk\FaceRecognition
+build_property.MSBuildProjectDirectory = C:\Users\Utente\Desktop\.NET\Volantini\trunk\FaceRecognition\Volantini
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Pages/Error.cshtml]
+[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Volantini/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Pages/FaceList.cshtml]
+[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Volantini/Pages/FaceList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmFjZUxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Pages/Index.cshtml]
+[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Volantini/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Pages/Privacy.cshtml]
+[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Volantini/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Volantini/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Pages/_ViewImports.cshtml]
+[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Volantini/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Pages/_ViewStart.cshtml]
+[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Volantini/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Pages/Shared/_Layout.cshtml]
+[C:/Users/Utente/Desktop/.NET/Volantini/trunk/FaceRecognition/Volantini/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-8b0qhkmq66

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wwy1yCEp3Rlv6eP49+QzJ1omLdbfYMyPWQ5zu+7/9pRXFVXu7kFXBrO8KrP31rsgZPH5iQpHA5jTqAmlC6y9sw==",
+  "dgSpecHash": "fdBuFihCYDMwxDG3cBWlVNk/9IPQUkbXK5YRG8uqRKO69L2cKNnhWZpM+GbCJ8cAYr0IpUcIPNMpDoOZdMGRKQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\FaceRecognition.csproj",
+  "projectFilePath": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\FaceRecognition.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Utente\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Utente\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
