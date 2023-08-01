@@ -30,7 +30,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/ContosoPizza.csproj",
+                "${workspaceFolder}/FaceRecognition.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -42,7 +42,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/ContosoPizza.csproj",
+                "${workspaceFolder}/FaceRecognition.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -56,7 +56,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/ContosoPizza.csproj"
+                "${workspaceFolder}/FaceRecognition.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

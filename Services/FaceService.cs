@@ -32,7 +32,7 @@ namespace FaceRecognition.Services
                         {
                             list.Add(new FaceUser()
                             {
-                                Id = Convert.ToInt32(reader["Id"]),
+                                Id = reader["Id"].ToString(),
                                 FirstName = reader["FirstName"].ToString(),
                                 LastName = reader["LastName"].ToString()
                             });
@@ -62,6 +62,24 @@ namespace FaceRecognition.Services
                 //_context.SaveChanges();
             }
         }
+
+        public void AddFoto(byte[] foto)
+        {
+            if (foto != null)
+            {
+                using (conn)
+                {
+                    MySqlCommand cmd = new MySqlCommand
+                    ("insert into FaceUser (Id,Lastname,Firstname,Face) VALUES (@id, Prova, Prova, @Face)", conn);
+                    cmd.Parameters.AddWithValue("@id", 5);
+                    cmd.Parameters.AddWithValue("@Face", foto);
+                    cmd.ExecuteNonQuery();
+                }
+                //_context.FaceUsers.Add(FaceUser);
+                //_context.SaveChanges();
+            }
+        }
+
 
         public void DeleteFaceUsers(int id)
         {

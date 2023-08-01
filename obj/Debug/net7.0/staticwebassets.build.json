@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aoh1hHZuJX+cG+l/Gm5wQFSpvoX0yb5OBamtu+w3PtE=",
+  "Hash": "C8EEiGYVNYK/xmwD+ucBmt5hjRe+rKcTWnSELuFjsHA=",
   "Source": "FaceRecognition",
   "BasePath": "_content/FaceRecognition",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\js\\webcam.min.js",
+      "SourceId": "FaceRecognition",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\",
+      "BasePath": "_content/FaceRecognition",
+      "RelativePath": "js/webcam.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\webcam.min.js"
     },
     {
       "Identity": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

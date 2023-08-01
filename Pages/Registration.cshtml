@@ -1,0 +1,73 @@
+﻿@page 
+
+@model FaceRecognition.Pages.FaceListModel
+@{
+    ViewData["Title"] = "People List";
+}
+
+<h1>Registrazione</h1>
+
+<form method="post"  enctype="multipart/form-data">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
+
+    <div class="form-group">
+        <label asp-for="NewFace.LastName" class="control-label"></label>
+        <input asp-for="NewFace.LastName" class="form-control">
+        <span asp-validation-for="NewFace.LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NewFace.FirstName" class="control-label"></label>
+        <input asp-for="NewFace.FirstName" class="form-control" />
+        <span asp-validation-for="NewFace.FirstName" class="text-danger"></span>
+    </div>
+
+    <div class ="form-group">
+            
+        <h3>Cattura Foto dalla Webcam</h3>
+
+        <tr>
+            <td><div id="my_camera"></div></td>
+            <td><img id ="results" alt = "Screenshot"/></img></td>   
+        </tr>
+
+        <input type=button value="Take Snapshot" onClick="take_snapshot()">
+
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary"/>
+    </div>
+
+</form>
+
+@section Scripts 
+{
+    <script src="~/js/webcam.min.js"></script>
+
+    <script>
+        Webcam.set(
+        {
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+
+        Webcam.attach( '#my_camera' );
+
+        function take_snapshot() 
+        {
+            // take snapshot and get image data
+            Webcam.snap(function(msg) 
+            {
+                // display results in page
+                $("#results")[0].src = msg;
+                var blob = msg.replace(/^data\:image\/\w+\;base64\,/, '');
+                fetch(`?handler=Foto&msg=${blob}`);       
+            });
+        }
+
+    </script>
+}

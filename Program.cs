@@ -1,6 +1,7 @@
 using FaceRecognition.Data;
 using FaceRecognition.Services;
 using MySqlConnector;
+using Microsoft.AspNetCore.Session;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -8,13 +9,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
 builder.Services.AddScoped<FaceService>();
-//builder.Services.AddDbContext<FaceContext>(options =>
-    //new MySqlConnection(builder.Configuration.GetConnectionString("Default")));
 
 builder.Services.AddDbContext<FaceContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("Default")));
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(1000);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,6 +42,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapRazorPages();
 
