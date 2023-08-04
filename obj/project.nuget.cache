@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fdBuFihCYDMwxDG3cBWlVNk/9IPQUkbXK5YRG8uqRKO69L2cKNnhWZpM+GbCJ8cAYr0IpUcIPNMpDoOZdMGRKQ==",
+  "dgSpecHash": "u3uKilgbioEynVoV+BHnAnrK7atx6mT0KdzZ9CqVPwx6RHTVqrFMOKE15j0Q8kc27ehUSZ/dMq5AWGWrCxaeTQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\FaceRecognition.csproj",
   "expectedPackageFiles": [
@@ -93,6 +93,8 @@
     "C:\\Users\\Utente\\.nuget\\packages\\nuget.protocol\\6.3.1\\nuget.protocol.6.3.1.nupkg.sha512",
     "C:\\Users\\Utente\\.nuget\\packages\\nuget.versioning\\6.3.1\\nuget.versioning.6.3.1.nupkg.sha512",
     "C:\\Users\\Utente\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
+    "C:\\Users\\Utente\\.nuget\\packages\\python.runtime\\2.7.9\\python.runtime.2.7.9.nupkg.sha512",
+    "C:\\Users\\Utente\\.nuget\\packages\\pythonnet\\3.0.1\\pythonnet.3.0.1.nupkg.sha512",
     "C:\\Users\\Utente\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Utente\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Utente\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

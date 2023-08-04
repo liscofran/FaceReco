@@ -2,18 +2,20 @@ import os
 import time
 import numpy as np
 import pandas as pd
+import time
 import cv2
-import requests
-import mysql.connector
 from deepface import DeepFace
 from deepface.commons import functions
-
+from flask import Flask,jsonify
 
 # dependency configuration
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
+#app = Flask(__name__)
+
+#@app.route('/analisi', methods=['POST'])
 def analisi(
-    db_path,
+    db_path = "/wwwroot/imgs",
     model_name="VGG-Face",
     detector_backend="opencv",
     distance_metric="cosine",
@@ -706,93 +708,19 @@ def analisi(
         else:
             cv2.imshow("img", img)
 
-        if cv2.waitKey(1) & 0xFF == ord("q"):  # press q to quit
-            return dfs
+        time.sleep(5)  # Attendiamo 5 secondi
+         # if cv2.waitKey(1) & 0xFF == ord("q"): press q to quit
+        if dfs[0].empty == True:
+            result = False
+        else:
+            result = True
 
     # kill open cv things
     cap.release()
     cv2.destroyAllWindows()
+    return jsonify({"result": result})
 
-def get_data_from_external_api():
-
-    url = 'http://localhost:5257/Verify'  # URL dell'API esterna da cui effettuare la richiesta GET
-
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # Controlla se ci sono errori nella risposta
-        result = 'true'
-        return result  # Restituisce i dati come oggetto JSON
-    except requests.exceptions.RequestException as e:
-        print(f"Errore durante la richiesta GET: {e}")
-        return None
-
-def connection():
-    # Configurazione per la connessione al database
-    config = {
-        'user': 'FaceUser',
-        'password': 'Useruser!',
-        'host': '127.0.0.1', 
-        'database': 'facedb',
-    }
-
-    try:
-        # Stabilisci la connessione al database
-        conn = mysql.connector.connect(**config)
-
-        if conn.is_connected():
-    
-            cursor = conn.cursor()
-            query = "SELECT * FROM nome_tabella"
-            cursor.execute(query)
-
-            # Recupera i dati dalla query
-            results = cursor.fetchall()
-
-            # Chiudi il cursore e la connessione
-            cursor.close()
-            conn.close()
-
-    except mysql.connector.Error as e:
-        print('Errore durante la connessione al database:', e)
-    
-    return conn
-
-def main():
-
-    database = connection()
-
-    #img_path = 'jolie.jpg'
-    #find(img_path, database)
-
-    models = [
-            "VGG-Face", 
-            "Facenet", 
-            "Facenet512", 
-            "OpenFace", 
-            "DeepFace", 
-            "DeepID", 
-            "ArcFace", 
-            "Dlib", 
-            "SFace",]
-    
-    backends = [
-            'opencv', 
-            'ssd', 
-            'dlib', 
-            'mtcnn', 
-            'retinaface', 
-            'mediapipe',
-            'yolov8',
-            'yunet',]
-    
-    dfs = analisi(db_path=connection,model_name= models[1],detector_backend = backends[0])
-
-    if dfs[0].empty == True:
-        print(True)
-    else:
-        print(False)
-
-    #analisi(database, models[3], backends[0])
-        
 if __name__ == '__main__':
-    main()
+    analisi()
+    #app.run(host='0.0.0.0', port=7040)
+    #127.0.0.1

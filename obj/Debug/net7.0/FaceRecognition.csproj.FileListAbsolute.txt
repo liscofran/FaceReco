@@ -630,3 +630,4 @@ C:\Users\Utente\Desktop\.NET\Volantini\trunk\FaceRecognition\Volantini\obj\Debug
 C:\Users\Utente\Desktop\.NET\Volantini\trunk\FaceRecognition\Volantini\obj\Debug\net7.0\FaceRecognition.pdb
 C:\Users\Utente\Desktop\.NET\Volantini\trunk\FaceRecognition\Volantini\obj\Debug\net7.0\FaceRecognition.genruntimeconfig.cache
 C:\Users\Utente\Desktop\.NET\Volantini\trunk\FaceRecognition\Volantini\obj\Debug\net7.0\ref\FaceRecognition.dll
+C:\Users\Utente\Desktop\.NET\Volantini\trunk\FaceRecognition\volantini\bin\Debug\net7.0\Python.Runtime.dll

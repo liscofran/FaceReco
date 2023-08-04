@@ -64,6 +64,14 @@
             "MySqlConnector": {
               "target": "Package",
               "version": "[2.2.7, )"
+            },
+            "Python.Runtime": {
+              "target": "Package",
+              "version": "[2.7.9, )"
+            },
+            "pythonnet": {
+              "target": "Package",
+              "version": "[3.0.1, )"
             }
           },
           "imports": [

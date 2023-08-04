@@ -1,48 +1,12 @@
 ﻿@page
-@model PrivacyModel
+@model VerifyModel
 @{
     ViewData["Title"] = "Verifica Volto";
 }
 <h1>@ViewData["Title"]</h1>
 
-<button id="btnVerify">Verifica</button>
+<form method="post">
+    <button id="btnVerify">Verifica</button>
+</form>
 
-<p>Risultato: <span id="result"></span></p>
-
-@section Scripts 
-{
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-
-        $(document).ready(function () 
-        {
-            // Assegna l'evento click al bottone
-            $("#btnVerify").click(function () 
-            {
-                // Effettua la richiesta GET al modulo Python tramite AJAX
-                $.ajax({
-                    url: "Volantini/analisi", // Sostituisci con il percorso corretto al tuo modulo Python
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) 
-                    {
-                        / // Verifica se la risposta è 'true' o 'false'
-                        if (data === 'true') {
-                            // Se la risposta è 'true', mostra "vero"
-                            $("#result").text("vero");
-                        } else {
-                            // Altrimenti, mostra "falso"
-                            $("#result").text("falso");
-                        }
-                    },
-                    error: function (xhr, textStatus, errorThrown) {
-                        // Gestisci eventuali errori durante la richiesta
-                        console.error("Errore nella richiesta GET:", errorThrown);
-                    }
-                });
-            });
-        });
-
-    </script>
-}
+<p>Risultato: <span id="result">@TempData["Result"]</span></p>

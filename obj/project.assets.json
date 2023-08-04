@@ -2096,6 +2096,26 @@
           }
         }
       },
+      "Python.Runtime/2.7.9": {
+        "type": "package"
+      },
+      "pythonnet/3.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "System.Reflection.Emit": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Python.Runtime.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Python.Runtime.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -3146,7 +3166,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.1/_._": {
+          "ref/netstandard1.1/System.Reflection.Emit.dll": {
             "related": ".xml"
           }
         },
@@ -3162,7 +3182,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/_._": {
+          "ref/netstandard1.0/System.Reflection.Emit.ILGeneration.dll": {
             "related": ".xml"
           }
         },
@@ -6941,6 +6961,34 @@
         "lib/netstandard2.0/BouncyCastle.Crypto.xml",
         "portable.bouncycastle.1.9.0.nupkg.sha512",
         "portable.bouncycastle.nuspec"
+      ]
+    },
+    "Python.Runtime/2.7.9": {
+      "sha512": "NBS5t9KJvBVDoAFsVOQ79Ri133Hir8O6sqcEZJufXLVvlReXvzyZKhkcO5fpWcqjj6798qrWd/tO/TXCx2Ga7g==",
+      "type": "package",
+      "path": "python.runtime/2.7.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "python.exe",
+        "python.runtime.2.7.9.nupkg.sha512",
+        "python.runtime.nuspec"
+      ]
+    },
+    "pythonnet/3.0.1": {
+      "sha512": "FYgnTnIUDE/9CC1m/046UvevJW9RYLtvyc98pycc+76lFG+MdTlwkKoG63RkvPKgbqlJJSMqu8zxeiqHS8vR9Q==",
+      "type": "package",
+      "path": "pythonnet/3.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "lib/netstandard2.0/Python.Runtime.dll",
+        "lib/netstandard2.0/Python.Runtime.xml",
+        "python-clear.png",
+        "pythonnet.3.0.1.nupkg.sha512",
+        "pythonnet.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -11298,7 +11346,9 @@
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.5",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.6",
       "MySql.Data >= 8.1.0",
-      "MySqlConnector >= 2.2.7"
+      "MySqlConnector >= 2.2.7",
+      "Python.Runtime >= 2.7.9",
+      "pythonnet >= 3.0.1"
     ]
   },
   "packageFolders": {
@@ -11307,11 +11357,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\FaceRecognition.csproj",
+      "projectUniqueName": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\volantini\\FaceRecognition.csproj",
       "projectName": "FaceRecognition",
-      "projectPath": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\FaceRecognition.csproj",
+      "projectPath": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\volantini\\FaceRecognition.csproj",
       "packagesPath": "C:\\Users\\Utente\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\obj\\",
+      "outputPath": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\volantini\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Utente\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -11364,6 +11414,14 @@
           "MySqlConnector": {
             "target": "Package",
             "version": "[2.2.7, )"
+          },
+          "Python.Runtime": {
+            "target": "Package",
+            "version": "[2.7.9, )"
+          },
+          "pythonnet": {
+            "target": "Package",
+            "version": "[3.0.1, )"
           }
         },
         "imports": [
