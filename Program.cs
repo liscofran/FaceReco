@@ -3,6 +3,9 @@ using FaceRecognition.Services;
 using MySqlConnector;
 using Microsoft.AspNetCore.Session;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -6,16 +6,23 @@ import time
 import cv2
 from deepface import DeepFace
 from deepface.commons import functions
-from flask import Flask,jsonify
+from flask import Flask,request, jsonify
 
 # dependency configuration
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
-#app = Flask(__name__)
+app = Flask(__name__)
 
-#@app.route('/analisi', methods=['POST'])
+@app.route('/api/post_endpoint', methods=['POST'])
+def post_endpoint():
+    data = request.json  # I dati JSON inviati nella richiesta POST
+    # Esegui qui la logica desiderata con i dati ricevuti
+    return "Dati POST ricevuti correttamente!"
+
+
+@app.route('/api/analisi', methods=['POST'])
 def analisi(
-    db_path = "/wwwroot/imgs",
+    db_path = "./wwwroot/imgs",
     model_name="VGG-Face",
     detector_backend="opencv",
     distance_metric="cosine",
@@ -67,6 +74,7 @@ def analisi(
     cap = cv2.VideoCapture(source)  # webcam
     while True:
         _, img = cap.read()
+        dfs2 = pd.DataFrame() 
 
         if img is None:
             break
@@ -421,6 +429,7 @@ def analisi(
                         if len(dfs) > 0:
                             # directly access 1st item because custom face is extracted already
                             df = dfs[0]
+                            dfs2 = dfs[0]
 
                             if df.shape[0] > 0:
                                 candidate = df.iloc[0]
@@ -710,7 +719,7 @@ def analisi(
 
         time.sleep(5)  # Attendiamo 5 secondi
          # if cv2.waitKey(1) & 0xFF == ord("q"): press q to quit
-        if dfs[0].empty == True:
+        if dfs2.empty == True:
             result = False
         else:
             result = True
@@ -721,6 +730,5 @@ def analisi(
     return jsonify({"result": result})
 
 if __name__ == '__main__':
-    analisi()
-    #app.run(host='0.0.0.0', port=7040)
-    #127.0.0.1
+    app.run(debug=True)
+    #analisi()
