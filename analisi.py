@@ -718,16 +718,16 @@ def analisi(
             cv2.imshow("img", img)
 
         time.sleep(5)  # Attendiamo 5 secondi
-         # if cv2.waitKey(1) & 0xFF == ord("q"): press q to quit
-        if dfs2.empty == True:
-            result = False
-        else:
-            result = True
+        if cv2.waitKey(1) & 0xFF == ord("q"):
+            if dfs[0].empty == True:
+                result = "Falso"
+            else:
+                result = "Vero"
+            return result
 
     # kill open cv things
     cap.release()
     cv2.destroyAllWindows()
-    return jsonify({"result": result})
 
 if __name__ == '__main__':
     app.run(debug=True)
