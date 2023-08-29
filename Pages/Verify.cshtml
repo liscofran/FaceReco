@@ -3,10 +3,52 @@
 @{
     ViewData["Title"] = "Verifica Volto";
 }
-<h1>@ViewData["Title"]</h1>
+    <h1>@ViewData["Title"]</h1>
 
-<form method="post">
-    <button id="btnVerify">Verifica</button>
-</form>
+    <h3>Cattura Foto dalla Webcam</h3>
 
-<p>Risultato: <span id="result">@TempData["Result"]</span></p>
+    <tr>
+        <td><div id="my_camera"></div></td>
+        <td><img id ="results" alt = "Screenshot"/></img></td>   
+    </tr>
+
+    <input id="snapshotButton" type="button" value="Scatta la foto" onClick="take_snapshot()">
+
+    <form method="post" value ="Async">
+        
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary"/>
+        </div>
+    </form>
+
+    <p>Risultato: <span id="result">@TempData["Result"]</span></p>
+
+@section Scripts 
+{
+    <script src="~/js/webcam.min.js"></script>
+
+    <script>
+        Webcam.set(
+        {
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+
+        Webcam.attach( '#my_camera' );
+
+       function take_snapshot() 
+       {       
+            // take snapshot and get image data
+            Webcam.snap(function(msg) 
+            {
+                // display results in page
+                $("#results")[0].src = msg;
+                var blob = msg.replace(/^data\:image\/\w+\;base64\,/, '');
+                fetch(`?handler=Foto&msg=${blob}`);       
+            });
+       }
+        
+    </script>
+}

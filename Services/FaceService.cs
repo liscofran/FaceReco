@@ -33,8 +33,7 @@ namespace FaceRecognition.Services
                             list.Add(new FaceUser()
                             {
                                 Id = reader["Id"].ToString(),
-                                FirstName = reader["FirstName"].ToString(),
-                                LastName = reader["LastName"].ToString()
+                                Nome = reader["Nome"].ToString(),
                             });
                         }
                     }
@@ -51,35 +50,15 @@ namespace FaceRecognition.Services
                 using (conn)
                 {
                     MySqlCommand cmd = new MySqlCommand
-                    ("insert into FaceUser (Id,Lastname,Firstname,Face) VALUES (@id, @Lastname, @Firstname, @Face)", conn);
+                    ("insert into FaceUser (Id,Nome) VALUES (@id, @Nome)", conn);
                     cmd.Parameters.AddWithValue("@id", FaceUser.Id);
-                    cmd.Parameters.AddWithValue("@Lastname", FaceUser.LastName);
-                    cmd.Parameters.AddWithValue("@Firstname", FaceUser.FirstName);
-                    cmd.Parameters.AddWithValue("@Face", FaceUser.Face);
+                    cmd.Parameters.AddWithValue("@Nome", FaceUser.Nome);
                     cmd.ExecuteNonQuery();
                 }
                 //_context.FaceUsers.Add(FaceUser);
                 //_context.SaveChanges();
             }
         }
-
-        public void AddFoto(byte[] foto)
-        {
-            if (foto != null)
-            {
-                using (conn)
-                {
-                    MySqlCommand cmd = new MySqlCommand
-                    ("insert into FaceUser (Id,Lastname,Firstname,Face) VALUES (@id, Prova, Prova, @Face)", conn);
-                    cmd.Parameters.AddWithValue("@id", 5);
-                    cmd.Parameters.AddWithValue("@Face", foto);
-                    cmd.ExecuteNonQuery();
-                }
-                //_context.FaceUsers.Add(FaceUser);
-                //_context.SaveChanges();
-            }
-        }
-
 
         public void DeleteFaceUsers(int id)
         {
