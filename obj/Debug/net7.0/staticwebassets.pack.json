@@ -13,8 +13,12 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\download (1).jpg",
-      "PackagePath": "staticwebassets\\imgs\\download (1).jpg"
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\MXPDL9Ooqp\\MXPDL9Ooqp.jpg",
+      "PackagePath": "staticwebassets\\imgs\\MXPDL9Ooqp\\MXPDL9Ooqp.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\representations_vgg_face.pkl",
+      "PackagePath": "staticwebassets\\imgs\\representations_vgg_face.pkl"
     },
     {
       "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\js\\site.js",
