@@ -1,18 +1,16 @@
 ﻿@page 
-
 @model FaceRecognition.Pages.FaceListModel
-@if (TempData.ContainsKey("Message"))
+@if (!string.IsNullOrEmpty(Model.Message))
 {
     <div class="alert alert-success">
-        @TempData["Message"]
+        @Model.Message
     </div>
 }
 
 <h1>Registrazione</h1>
 
-<form method="post"  enctype="multipart/form-data">
-
-    <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
+<form method="post" enctype="multipart/form-data">
+   <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
 
     <div class="form-group">
         <label asp-for="NewFace.Nome" class="control-label"></label>
@@ -20,51 +18,65 @@
         <span asp-validation-for="NewFace.Nome" class="text-danger"></span>
     </div>
 
-    <div class ="form-group">
-            
-        <h3>Cattura Foto dalla Webcam</h3>
-
-        <tr>
-            <td><div id="my_camera"></div></td>
-            <td><img id ="results" alt = "Screenshot"/></img></td>   
-        </tr>
-
-        <input type=button value="Scatta la foto" onClick="take_snapshot()">
-
+    <br>  
+    <div style="display: flex; gap: 20px;">
+        <div style="flex: 1;">
+            <div id="my_camera"></div>         
+        </div>
+        <div style="flex: 1;">
+            <img id="results" alt="Screenshot" />
+        </div>
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary"/>
+        <br>    
+        <div class="container">
+            <input id="snapshotButton" class="btn btn-primary" type="button" value="Scatta Foto" />
+            <button type="submit" class="btn btn-primary" asp-page-handler="Foto">Carica Immagine</button>
+            <label class="custom-button" for="imageFile"></label>
+            <input type="file" class="form-control-file" id="imageFile" name="ImageFile" accept="image/*" required>
+        </div>    
     </div>
-
 </form>
 
 @section Scripts 
 {
     <script src="~/js/webcam.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 
     <script>
-        Webcam.set(
-        {
-            width: 320,
-            height: 240,
+        Webcam.set({
+            width: 640,
+            height: 480,
             image_format: 'jpeg',
             jpeg_quality: 90
         });
 
-        Webcam.attach( '#my_camera' );
+        Webcam.attach('#my_camera');
 
-        function take_snapshot() 
-        {
+        function take_snapshot() {       
             // take snapshot and get image data
-            Webcam.snap(function(msg) 
-            {
+            Webcam.snap(function(data_uri) {
                 // display results in page
-                $("#results")[0].src = msg;
-                var blob = msg.replace(/^data\:image\/\w+\;base64\,/, '');
-                fetch(`?handler=Foto&msg=${blob}`);       
+                $("#results").attr("src", data_uri);
+                
+                // Setta il valore dell'input nascosto con i dati dell'immagine come stringa Base64
+                $("#image").val(data_uri);
+
+                // Salva lo screenshot come file nel percorso desiderato
+                var link = document.createElement('a');
+                link.href = data_uri;
+                link.download = 'screenshot.jpg';
+                link.click();
             });
         }
+
+        // Aggiungi un gestore per l'invio del form
+       $(document).ready(function() {
+            $("#snapshotButton").click(function() {
+                take_snapshot();
+            });
+        });
 
     </script>
 }

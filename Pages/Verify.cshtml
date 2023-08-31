@@ -2,53 +2,106 @@
 @model VerifyModel
 @{
     ViewData["Title"] = "Verifica Volto";
+    bool showMessageLink = TempData["ShowMessageLink"] != null && (bool)TempData["ShowMessageLink"];
 }
-    <h1>@ViewData["Title"]</h1>
+@if (showMessageLink)
+{
+    <script>
+           // Funzione per aprire una nuova scheda al centro della pagina con il messaggio
+        function openMessageLinkInCenter(message) {
+            var screenWidth = window.innerWidth;
+            var screenHeight = window.innerHeight;
 
-    <h3>Cattura Foto dalla Webcam</h3>
+            var newTabWidth = 500;  // Imposta la larghezza della nuova scheda
+            var newTabHeight = 300; // Imposta l'altezza della nuova scheda
 
-    <tr>
-        <td><div id="my_camera"></div></td>
-        <td><img id ="results" alt = "Screenshot"/></img></td>   
-    </tr>
+            var left = (screenWidth - newTabWidth) / 2;
+            var top = (screenHeight - newTabHeight) / 2;
 
-    <input id="snapshotButton" type="button" value="Scatta la foto" onClick="take_snapshot()">
+            var newTab = window.open("", "_blank", `width=${newTabWidth},height=${newTabHeight},left=${left},top=${top}`);
+            newTab.document.write("<p>" + message + "</p>");
+            newTab.document.close();
+        }
 
-    <form method="post" value ="Async">
-        
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary"/>
-        </div>
-    </form>
+        // Chiama la funzione per aprire la nuova scheda
+        openMessageLinkInCenter("@TempData["Result"]");
+    </script>
+}
 
-    <p>Risultato: <span id="result">@TempData["Result"]</span></p>
+<h1>@ViewData["Title"]</h1>
 
-@section Scripts 
+<div style="display: flex; gap: 20px;">
+    <div style="flex: 1;">
+        <div id="my_camera"></div>         
+    </div>
+    <div style="flex: 1;">
+        <img id="results" alt="Screenshot" />
+    </div>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <br>    
+        <div class="container">
+            <input id="snapshotButton" class="btn btn-primary" type="button" value="Scatta Foto" />
+            <button type="submit" class="btn btn-primary" asp-page-handler="Foto">Carica Immagine</button>
+            <label class="custom-button" for="imageFile"></label>
+            <input type="file" class="form-control-file" id="imageFile" name="ImageFile" accept="image/*" required>
+        </div>    
+    </div>
+</form>
+
+<!-- Aggiungi questo codice alla tua pagina HTML per la finestra modale -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p id="modalMessage"></p>
+    </div>
+</div>
+
+@section Scripts
 {
     <script src="~/js/webcam.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        Webcam.set(
-        {
-            width: 320,
-            height: 240,
+        Webcam.set({
+            width: 640,
+            height: 480,
             image_format: 'jpeg',
             jpeg_quality: 90
         });
 
-        Webcam.attach( '#my_camera' );
+        Webcam.attach('#my_camera');
 
-       function take_snapshot() 
-       {       
+        function take_snapshot() {
             // take snapshot and get image data
-            Webcam.snap(function(msg) 
-            {
+            Webcam.snap(function (data_uri) {
                 // display results in page
-                $("#results")[0].src = msg;
-                var blob = msg.replace(/^data\:image\/\w+\;base64\,/, '');
-                fetch(`?handler=Foto&msg=${blob}`);       
+                $("#results").attr("src", data_uri);
+
+                // Setta il valore dell'input nascosto con i dati dell'immagine come stringa Base64
+                $("#image").val(data_uri);
+
+                // Salva lo screenshot come file nel percorso desiderato
+                var link = document.createElement('a');
+                link.href = data_uri;
+                link.download = 'screenshot.jpg';
+                link.click();
             });
-       }
-        
+        }
+
+        // Aggiungi un gestore per l'invio del form
+        $(document).ready(function () {
+            $("#snapshotButton").click(function () {
+                take_snapshot();
+            });
+            
+            // Simula il clic sul pulsante "Scegli Foto" quando si fa clic sul pulsante personalizzato
+            $(".custom-button[for='imageFile']").click(function () {
+                $("#imageFile").click();
+            });
+        });
+
     </script>
 }

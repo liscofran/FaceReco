@@ -8,5 +8,4 @@ public class FaceUser
     
     [Required]
     public string? Nome { get; set; }
-    public byte[]? Face { get; set; }
 }

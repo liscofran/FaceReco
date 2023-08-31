@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
-import cv2
+import base64
+from PIL import Image
+import io
 import numpy as np
 from deepface import DeepFace
 import os
@@ -11,32 +13,24 @@ app = Flask(__name__)
 
 @app.route('/api/analisi', methods=['POST'])
 def analisi():
-    try:
-        img_data = request.data
-        img_np = np.frombuffer(img_data, dtype=np.uint8)
-        img = cv2.imdecode(img_np, cv2.IMREAD_COLOR)
-        
-        if img is None:
-            return "Errore nella decodifica dell'immagine"
-        
-        dfs = DeepFace.find(img_path=img, db_path="./wwwroot/imgs")
+    try:       
+        data = request.get_json()  # Ottiene l'oggetto JSON dalla richiesta
+        path = data.get("imagePath")  # Estrae il percorso dal campo "imagePath" dell'oggetto JSON
 
-        print(dfs)
-
-        for df in dfs:
-            print(df)
-
-        for df in dfs:
-            if "identity" in df:
-                print("Identity found:", df["identity"])
+        dfs = DeepFace.find(img_path=path, db_path="./wwwroot/imgs")
 
         if len(dfs) == 0:
             return "Non trovato"
         else: 
             first_dataframe = dfs[0]
             if "identity" in first_dataframe:
-                identity = first_dataframe["identity"]
-                return str(identity)  # Restituisce il valore dell'identità come stringa
+                identity = str(first_dataframe["identity"][0])
+                last_slash_index = identity.rfind("/")
+                last_dot_index = identity.rfind(".")
+
+                # Estrai la parte della stringa tra l'ultimo slash e l'ultimo punto
+                return identity[last_slash_index + 1 : last_dot_index]
+                   
             else:
                 return "Attributo 'identity' non trovato nel primo DataFrame"         
     except Exception as e:

@@ -14,6 +14,12 @@ a.navbar-brand[b-8b0qhkmq66] {
   border: 1px solid black;
 }
 
+.container[b-8b0qhkmq66]{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start
+}
+
 a[b-8b0qhkmq66] {
   color: #0077cc;
 }
