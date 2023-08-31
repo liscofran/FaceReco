@@ -13,6 +13,12 @@ a.navbar-brand {
   border: 1px solid black;
 }
 
+.container{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start
+}
+
 a {
   color: #0077cc;
 }

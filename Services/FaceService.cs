@@ -2,6 +2,7 @@
 using FaceRecognition.Models;
 using MySqlConnector;
 
+
 namespace FaceRecognition.Services
 {
     public class FaceService
@@ -20,27 +21,52 @@ namespace FaceRecognition.Services
         {
             if(_context.FaceUsers != null)
             {
-                List<FaceUser> list = new List<FaceUser>();
+                List<FaceUser> list = new();
 
                 using (conn)
                 {
-                    MySqlCommand cmd = new MySqlCommand("select * from FaceUser", conn);
+                    MySqlCommand cmd = new("select * from FaceUser", conn);
 
-                    using (var reader = cmd.ExecuteReader())
+                    using var reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        list.Add(new FaceUser()
                         {
-                            list.Add(new FaceUser()
-                            {
-                                Id = reader["Id"].ToString(),
-                                Nome = reader["Nome"].ToString(),
-                            });
-                        }
+                            Id = reader["Id"].ToString(),
+                            Nome = reader["Nome"].ToString(),
+                        });
+
                     }
                 }
                 return list;
             }
             return new List<FaceUser>();
+        }
+
+        public FaceUser GetFaceUser(string id)
+        {
+            
+
+            if(_context.FaceUsers != null)
+            {
+                FaceUser user = new();
+
+                using (conn)
+                {
+                    MySqlCommand cmd = new("select * from FaceUser where Id = @id", conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    using var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    { 
+                        user.Id = reader["Id"].ToString();
+                        user.Nome = reader["Nome"].ToString();
+                    }
+                }
+
+                return user;
+            }
+
+            return null;
         }
 
         public void AddFaceUsers(FaceUser FaceUser)
@@ -49,8 +75,7 @@ namespace FaceRecognition.Services
             {
                 using (conn)
                 {
-                    MySqlCommand cmd = new MySqlCommand
-                    ("insert into FaceUser (Id,Nome) VALUES (@id, @Nome)", conn);
+                    MySqlCommand cmd = new("insert into FaceUser (Id,Nome) VALUES (@id, @Nome)", conn);
                     cmd.Parameters.AddWithValue("@id", FaceUser.Id);
                     cmd.Parameters.AddWithValue("@Nome", FaceUser.Nome);
                     cmd.ExecuteNonQuery();
@@ -70,7 +95,7 @@ namespace FaceRecognition.Services
                     using (conn)
                     {
                         string query = "DELETE FROM FaceUser WHERE id = @id";
-                        MySqlCommand cmd = new MySqlCommand(query, conn);
+                        MySqlCommand cmd = new(query, conn);
                         cmd.Parameters.AddWithValue("@id", id);
                         cmd.ExecuteNonQuery();
                     }
