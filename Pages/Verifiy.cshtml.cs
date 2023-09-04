@@ -67,6 +67,7 @@ namespace FaceRecognition.Pages
                     if (result.Length == 10)
                     {
                         FaceUser user = _service.GetFaceUser(result);
+
                         if(user != null)
                         {
                             TempData["Result"] = "Benvenuto " + user.Nome;
@@ -75,16 +76,24 @@ namespace FaceRecognition.Pages
                         else
                         {
                             TempData["Result"] = "Utente non trovato, si prega di riprovare";
+                            TempData["ShowMessageLink"] = true; 
                         }            
+                    }
+                    else if(result == "0")
+                    {
+                        TempData["Result"] = "Volto non riconosciuto, ti sei già registrato ?";
+                        TempData["ShowMessageLink"] = true; 
                     }
                     else
                     {
-                        TempData["Result"] = "Impossibile riconoscere il Volto, cambia immagine e riprova";
+                        TempData["Result"] = "Impossibile riconoscere un volto, cambia immagine e riprova";
+                        TempData["ShowMessageLink"] = true; 
                     }
                 }
                 else
                 {
                     TempData["Result"] = "Errore nella richiesta POST";
+                    TempData["ShowMessageLink"] = true;
                 }
                 
                 //Elimina il file temporaneo
