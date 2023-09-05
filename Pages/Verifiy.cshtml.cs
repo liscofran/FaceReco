@@ -25,11 +25,10 @@ namespace FaceRecognition.Pages
             // This method will handle GET requests (when the page is loaded)
         }
 
-        public IActionResult OnPostFoto()
+        public async Task<IActionResult> OnPostFotoAsync()
         {
             if (imageFile != null && imageFile.Length > 0)
             {
-
                 // Imposta il percorso di destinazione per salvare l'immagine 
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "tmps");
                 string uniqueFileName = Guid.NewGuid().ToString() + "_webcam.jpg";
@@ -38,15 +37,7 @@ namespace FaceRecognition.Pages
                 // Salva l'immagine sul server
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    imageFile.CopyTo(stream); 
-                }
-
-                // Elimina il file 'representations_vgg_face.pkl' se esiste
-                string imgsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "imgs");
-                string pklFilePath = Path.Combine(imgsFolder, "representations_vgg_face.pkl");
-                if (System.IO.File.Exists(pklFilePath))
-                {
-                    System.IO.File.Delete(pklFilePath);
+                    imageFile.CopyTo(stream);
                 }
 
                 using var httpClient = new HttpClient();
@@ -58,36 +49,36 @@ namespace FaceRecognition.Pages
 
                 var jsonContent = new StringContent(JsonSerializer.Serialize(json), Encoding.UTF8, "application/json");
 
-                var response = httpClient.PostAsync("http://127.0.0.1:5000/api/analisi", jsonContent).Result;
+                var response = await httpClient.PostAsync("http://127.0.0.1:5000/api/analisi", jsonContent);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = response.Content.ReadAsStringAsync().Result;
+                    var result = await response.Content.ReadAsStringAsync();
 
                     if (result.Length == 10)
                     {
                         FaceUser user = _service.GetFaceUser(result);
 
-                        if(user != null)
+                        if (user != null)
                         {
                             TempData["Result"] = "Benvenuto " + user.Nome;
-                            TempData["ShowMessageLink"] = true; 
+                            TempData["ShowMessageLink"] = true;
                         }
                         else
                         {
                             TempData["Result"] = "Utente non trovato, si prega di riprovare";
-                            TempData["ShowMessageLink"] = true; 
-                        }            
+                            TempData["ShowMessageLink"] = true;
+                        }
                     }
-                    else if(result == "0")
+                    else if (result == "0")
                     {
                         TempData["Result"] = "Volto non riconosciuto, ti sei già registrato ?";
-                        TempData["ShowMessageLink"] = true; 
+                        TempData["ShowMessageLink"] = true;
                     }
                     else
                     {
                         TempData["Result"] = "Impossibile riconoscere un volto, cambia immagine e riprova";
-                        TempData["ShowMessageLink"] = true; 
+                        TempData["ShowMessageLink"] = true;
                     }
                 }
                 else
@@ -95,16 +86,13 @@ namespace FaceRecognition.Pages
                     TempData["Result"] = "Errore nella richiesta POST";
                     TempData["ShowMessageLink"] = true;
                 }
-                
-                //Elimina il file temporaneo
+                // Elimina il file temporaneo
                 if (System.IO.File.Exists(filePath))
                 {
                     System.IO.File.Delete(filePath);
                 }
-
             }
-
-            return RedirectToPage("/Verify");
+            return Page();
+            }
         }
-    }
 }

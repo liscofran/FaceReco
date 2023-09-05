@@ -51,6 +51,13 @@ namespace FaceRecognition.Pages
 
                 _service.AddFaceUsers(NewFace);
 
+                 // Elimina il file 'representations_vgg_face.pkl' se esiste
+                string pklFilePath = Path.Combine("wwwroot", "imgs",  "representations_vgg_face.pkl");
+                if (System.IO.File.Exists(pklFilePath))
+                {
+                    System.IO.File.Delete(pklFilePath);
+                }
+
                 Message = "Utente creato con successo e immagine salvata."; // Set the TempData message
 
                 return RedirectToPage(); // Redirect to the same page
