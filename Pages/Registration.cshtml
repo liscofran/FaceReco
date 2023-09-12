@@ -6,6 +6,13 @@
         @Model.Message
     </div>
 }
+@if (!string.IsNullOrEmpty(Model.Error))
+{
+    <div class="alert alert-danger">
+        @Model.Error
+    </div>
+}
+
 
 <h1>Registrazione</h1>
 

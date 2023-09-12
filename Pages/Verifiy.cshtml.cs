@@ -25,74 +25,44 @@ namespace FaceRecognition.Pages
             // This method will handle GET requests (when the page is loaded)
         }
 
-        public async Task<IActionResult> OnPostFotoAsync()
+        public IActionResult OnPostFoto()
         {
-            if (imageFile != null && imageFile.Length > 0)
+
+            using var httpClient = new HttpClient();
+
+            var response = httpClient.PostAsync("http://127.0.0.1:5000/api/analisi", null).Result;
+
+            if (response.IsSuccessStatusCode)
             {
-                // Imposta il percorso di destinazione per salvare l'immagine 
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "tmps");
-                string uniqueFileName = Guid.NewGuid().ToString() + "_webcam.jpg";
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                var result = response.Content.ReadAsStringAsync().Result;
 
-                // Salva l'immagine sul server
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                if (result.Length == 10)
                 {
-                    imageFile.CopyTo(stream);
-                }
+                    FaceUser user = _service.GetFaceUser(result);
 
-                using var httpClient = new HttpClient();
-
-                var json = new
-                {
-                    imagePath = filePath
-                };
-
-                var jsonContent = new StringContent(JsonSerializer.Serialize(json), Encoding.UTF8, "application/json");
-
-                var response = await httpClient.PostAsync("http://127.0.0.1:5000/api/analisi", jsonContent);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsStringAsync();
-
-                    if (result.Length == 10)
+                    if(user != null)
                     {
-                        FaceUser user = _service.GetFaceUser(result);
-
-                        if (user != null)
-                        {
-                            TempData["Result"] = "Benvenuto " + user.Nome;
-                            TempData["ShowMessageLink"] = true;
-                        }
-                        else
-                        {
-                            TempData["Result"] = "Utente non trovato, si prega di riprovare";
-                            TempData["ShowMessageLink"] = true;
-                        }
-                    }
-                    else if (result == "0")
-                    {
-                        TempData["Result"] = "Volto non riconosciuto, ti sei già registrato ?";
-                        TempData["ShowMessageLink"] = true;
+                        TempData["Result"] = "Benvenuto " + user.Nome;
+                        TempData["ShowMessageLink"] = true; 
                     }
                     else
                     {
-                        TempData["Result"] = "Impossibile riconoscere un volto, cambia immagine e riprova";
-                        TempData["ShowMessageLink"] = true;
-                    }
+                        TempData["Result"] = "Utente non trovato, si prega di riprovare";
+                        TempData["ShowMessageLink"] = true; 
+                    }            
                 }
                 else
                 {
-                    TempData["Result"] = "Errore nella richiesta POST";
-                    TempData["ShowMessageLink"] = true;
-                }
-                // Elimina il file temporaneo
-                if (System.IO.File.Exists(filePath))
-                {
-                    System.IO.File.Delete(filePath);
+                    TempData["Result"] = result;
+                    TempData["ShowMessageLink"] = true; 
                 }
             }
-            return Page();
+            else
+            {
+                TempData["Result"] = "Errore nella richiesta POST";
             }
+
+            return RedirectToPage("/Verify");
         }
+    }
 }
