@@ -1,10 +1,8 @@
-import os
 import threading
 import cv2
 from deepface import DeepFace
 import asyncio
 import websockets
-import queue
 
 server_closed = False
 name = None
@@ -25,8 +23,8 @@ def check_face(frame):
             if "identity" in first_dataframe:
                 identity = str(first_dataframe["identity"][0])
                 last_slash_index = identity.rfind("/")
-                last_dot_index = identity.rfind(".")
-                name = identity[last_slash_index + 1 : last_dot_index]
+                name = identity[last_slash_index - 10 : last_slash_index]
+
                 
     except ValueError:
         face_match = False

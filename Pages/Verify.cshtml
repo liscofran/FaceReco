@@ -1,41 +1,16 @@
 ﻿@page
 @model VerifyModel
 @{
-    ViewData["Title"] = "Verifica Volto";
-    bool showMessageLink = TempData["ShowMessageLink"] != null && (bool)TempData["ShowMessageLink"];
-}
-@if (showMessageLink)
-{
-    <script>
-           // Funzione per aprire una nuova scheda al centro della pagina con il messaggio
-        function openMessageLinkInCenter(message) {
-            var screenWidth = window.innerWidth;
-            var screenHeight = window.innerHeight;
-
-            var newTabWidth = 500;  // Imposta la larghezza della nuova scheda
-            var newTabHeight = 300; // Imposta l'altezza della nuova scheda
-
-            var left = (screenWidth - newTabWidth) / 2;
-            var top = (screenHeight - newTabHeight) / 2;
-
-            var newTab = window.open("", "_blank", `width=${newTabWidth},height=${newTabHeight},left=${left},top=${top}`);
-            newTab.document.write("<p>" + message + "</p>");
-            newTab.document.close();
-        }
-
-        // Chiama la funzione per aprire la nuova scheda
-        openMessageLinkInCenter("@TempData["Result"]");
-    </script>
+    ViewData["Title"] = "Verifica";
 }
 
 <h1>@ViewData["Title"]</h1>
 
-<form method="post">
-    <div class="form-group">
-        <br>        
-            <button type="submit" class="btn btn-primary" asp-page-handler="Foto">Avvia</button>  
-    </div>
-</form>
+<div class="form-group">
+    <br>        
+        <button type="button" id="avviaButton"class="btn btn-primary">Avvia</button>  
+        <button type="button" id="terminaButton"class="btn btn-danger">Termina</button>
+</div>
 
 <div id="myModal" class="modal">
     <div class="modal-content">
@@ -43,3 +18,61 @@
         <p id="modalMessage"></p>
     </div>
 </div>
+
+<script>
+    var webSocket;
+    var id;
+    var id2;
+
+    // Funzione per aprire la connessione WebSocket
+    function openWebSocket() 
+    {
+        webSocket = new WebSocket("ws://localhost:8765/");
+       
+        webSocket.onmessage = function(event) {
+            var message = event.data;
+
+            // Mostra il messaggio
+            openPopup(message);
+        };
+
+        id2 = setInterval(5000);
+    }
+
+    // Funzione per chiudere la connessione WebSocket
+    function closeWebSocket() {
+        webSocket.close();
+        clearInterval(id);
+        clearInterval(id2);
+    }
+
+    // Funzione per aprire il popup
+    function openPopup(message) {
+        var screenWidth = window.innerWidth;
+        var screenHeight = window.innerHeight;
+
+        var newTabWidth = 500;
+        var newTabHeight = 300;
+
+        var left = (screenWidth - newTabWidth) / 2;
+        var top = (screenHeight - newTabHeight) / 2;
+
+        var newTab = window.open("", "_blank", `width=${newTabWidth},height=${newTabHeight},left=${left},top=${top}`);
+        newTab.document.write("<p>" + message + "</p>");
+        newTab.document.close();
+    }
+
+    // Evento del pulsante "Avvia"
+    document.getElementById("avviaButton").addEventListener("click", function() 
+    {
+        openWebSocket();
+        
+        // Avvia la connessione automaticamente ogni 3 secondi dopo il click
+        id = setInterval(openWebSocket, 5000);
+    });
+
+    // Evento del pulsante "Termina"
+    document.getElementById("terminaButton").addEventListener("click", function() {
+        closeWebSocket();
+    });
+</script>
