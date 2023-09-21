@@ -1,41 +1,16 @@
 ﻿@page
 @model VerifyModel
 @{
-    ViewData["Title"] = "Verifica Volto";
-    bool showMessageLink = TempData["ShowMessageLink"] != null && (bool)TempData["ShowMessageLink"];
-}
-@if (showMessageLink)
-{
-    <script>
-           // Funzione per aprire una nuova scheda al centro della pagina con il messaggio
-        function openMessageLinkInCenter(message) {
-            var screenWidth = window.innerWidth;
-            var screenHeight = window.innerHeight;
-
-            var newTabWidth = 500;  // Imposta la larghezza della nuova scheda
-            var newTabHeight = 300; // Imposta l'altezza della nuova scheda
-
-            var left = (screenWidth - newTabWidth) / 2;
-            var top = (screenHeight - newTabHeight) / 2;
-
-            var newTab = window.open("", "_blank", `width=${newTabWidth},height=${newTabHeight},left=${left},top=${top}`);
-            newTab.document.write("<p>" + message + "</p>");
-            newTab.document.close();
-        }
-
-        // Chiama la funzione per aprire la nuova scheda
-        openMessageLinkInCenter("@TempData["Result"]");
-    </script>
+    ViewData["Title"] = "Verifica";
 }
 
 <h1>@ViewData["Title"]</h1>
 
-<form method="post">
-    <div class="form-group">
-        <br>        
-            <button type="submit" class="btn btn-primary" asp-page-handler="Foto">Avvia</button>  
-    </div>
-</form>
+<div class="form-group">
+    <br>        
+        <button type="button" id="avviaButton"class="btn btn-primary">Avvia</button>  
+        <button type="button" id="terminaButton"class="btn btn-danger">Termina</button>
+</div>
 
 <div id="myModal" class="modal">
     <div class="modal-content">
@@ -43,3 +18,76 @@
         <p id="modalMessage"></p>
     </div>
 </div>
+
+<!-- Aggiungi un box di testo per i messaggi -->
+<div id="messageBox"></div>
+
+<script>
+    var webSocket;
+    var id;
+    
+    // Array per conservare i messaggi ricevuti
+    var messages = [];
+
+    function openWebSocket() 
+    {
+        webSocket = new WebSocket("ws://localhost:8765/");
+
+        webSocket.onmessage = function(event) {
+            var message = event.data;
+
+            // Analizza il messaggio JSON
+            var messageData = JSON.parse(message);
+            var name = messageData.name;
+            var timestamp = messageData.timestamp;
+            
+            // Aggiungi il messaggio all'array
+            messages.push(`${timestamp}-${name}`);
+            
+            // Limita il numero di messaggi mostrati a 100
+            if (messages.length > 20) {
+                messages.shift(); // Rimuovi il messaggio più vecchio
+            }
+            
+            // Aggiorna il box dei messaggi
+            updateMessageBox();
+        };
+
+        webSocket.onclose = function(event) {
+            if (event.code === 1000) {
+                console.log("WebSocket chiusa con successo.");
+            } else {
+                console.error("WebSocket chiusa con codice errore:", event.code, event.reason);
+            }
+        };
+   
+    }
+
+    // Funzione per aggiornare il box dei messaggi
+    function updateMessageBox() {
+        var messageBox = document.getElementById("messageBox");
+        messageBox.innerHTML = messages.join("<br>");
+    }
+
+    // Evento del pulsante "Avvia"
+    document.getElementById("avviaButton").addEventListener("click", function() 
+    {         
+        id = setInterval(openWebSocket, 3000);
+    });
+
+    // Evento del pulsante "Termina"
+    document.getElementById("terminaButton").addEventListener("click", function() 
+    {
+        if (webSocket) 
+        {
+            // Invia un messaggio di chiusura personalizzato al server
+            var closeMessage = {
+                action: "closeConnection"
+            };
+            webSocket.send(JSON.stringify(closeMessage));
+        }
+
+        clearInterval(id);
+    });
+
+</script>

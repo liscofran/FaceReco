@@ -17,7 +17,8 @@
     <PackageReference Include="MySql.Data" Version="8.1.0" />
     <PackageReference Include="MySqlConnector" Version="2.2.7" />
     <PackageReference Include="Python.Runtime" Version="2.7.9" />
-    <PackageReference Include="pythonnet" Version="3.0.1" />  
+    <PackageReference Include="pythonnet" Version="3.0.1" />
+    <PackageReference Include="WebSocket4Net" Version="0.15.2" />  
   </ItemGroup>
 
 </Project>

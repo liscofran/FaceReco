@@ -7,6 +7,11 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+#messageBox {
+  overflow-y: scroll;
+  height: calc(100vh - 150px); /* Altezza massima meno l'altezza degli altri elementi */
+}
+
 #my_camera{
   width: 320px;
   height: 240px;

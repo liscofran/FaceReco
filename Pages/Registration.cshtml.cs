@@ -95,51 +95,52 @@ namespace FaceRecognition.Pages
         public bool ControllaImmagine(IFormFile? image)
         {
             // Imposta il percorso di destinazione per salvare l'immagine 
-                string uploadsFolder = Path.Combine("wwwroot", "tmps");
-                string uniqueFileName = Guid.NewGuid().ToString() + "_webcam.jpg";
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+            string uploadsFolder = Path.Combine("wwwroot", "tmps");
+            string uniqueFileName = Guid.NewGuid().ToString() + "_webcam.jpg";
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                // Salva l'immagine sul server
-                using (var stream = new FileStream(filePath, FileMode.Create))
+            // Salva l'immagine sul server
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                image.CopyTo(stream); 
+            }
+
+            using var httpClient = new HttpClient();
+
+            var json = new
+            {
+                imagePath = filePath
+            };
+
+            var jsonContent = new StringContent(JsonSerializer.Serialize(json), Encoding.UTF8, "application/json");
+
+            var response = httpClient.PostAsync("http://127.0.0.1:5000/api/verifica", jsonContent).Result;
+
+            // Elimina il file temporaneo
+            if (System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Delete(filePath);
+            }
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                
+                if (result == "0")
                 {
-                   image.CopyTo(stream); 
+                    return true;
                 }
-
-                using var httpClient = new HttpClient();
-
-                var json = new
+                else if(result.Length == 10)
                 {
-                    imagePath = filePath
-                };
-
-                var jsonContent = new StringContent(JsonSerializer.Serialize(json), Encoding.UTF8, "application/json");
-
-                var response = httpClient.PostAsync("http://127.0.0.1:5000/api/verifica", jsonContent).Result;
-
-                // Elimina il file temporaneo
-                if (System.IO.File.Exists(filePath))
-                {
-                    System.IO.File.Delete(filePath);
+                    Error = "Errore, volto già registrato"; // Set the TempData message
+                    return false;
                 }
-
-                if (response.IsSuccessStatusCode)
+                else
                 {
-                    var result = response.Content.ReadAsStringAsync().Result;
-                   
-                    if (result == "0")
-                    {
-                        return true;
-                    }
-                    else if(result.Length == 10)
-                    {
-                        Error = "Errore, volto già registrato"; // Set the TempData message
-                        return false;
-                    }
-                    {
-                        Error = "Errore, impossibile identificare un volto"; // Set the TempData message
-                        return false;
-                    }
+                    Error = "Errore, impossibile identificare un volto"; // Set the TempData message
+                    return false;
                 }
+            }
 
             Error = "Errore, si prega di riprovare"; // Set the TempData message
             return false;

@@ -948,3 +948,6 @@ D:\Desktop\DeepFace\Volantini\obj\Debug\net7.0\refint\FaceRecognition.dll
 D:\Desktop\DeepFace\Volantini\obj\Debug\net7.0\FaceRecognition.pdb
 D:\Desktop\DeepFace\Volantini\obj\Debug\net7.0\FaceRecognition.genruntimeconfig.cache
 D:\Desktop\DeepFace\Volantini\obj\Debug\net7.0\ref\FaceRecognition.dll
+C:\Users\Utente\Desktop\.NET\Volantini\trunk\FaceRecognition\Volantini\bin\Debug\net7.0\SuperSocket.ClientEngine.dll
+C:\Users\Utente\Desktop\.NET\Volantini\trunk\FaceRecognition\Volantini\bin\Debug\net7.0\WebSocket4Net.dll
+C:\Users\Utente\Desktop\.NET\Volantini\trunk\FaceRecognition\Volantini\bin\Debug\net7.0\venv\Lib\site-packages\asyncio-3.4.3.dist-info\metadata.json

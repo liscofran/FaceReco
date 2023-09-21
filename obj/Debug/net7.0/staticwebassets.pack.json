@@ -13,6 +13,26 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\6382908075\\6382908075.jpg",
+      "PackagePath": "staticwebassets\\imgs\\6382908075\\6382908075.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\6382908103\\6382908103.jpg",
+      "PackagePath": "staticwebassets\\imgs\\6382908103\\6382908103.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\6383010987\\6383010987.jpg",
+      "PackagePath": "staticwebassets\\imgs\\6383010987\\6383010987.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\6383082793\\6383082793.jpg",
+      "PackagePath": "staticwebassets\\imgs\\6383082793\\6383082793.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\representations_vgg_face.pkl",
+      "PackagePath": "staticwebassets\\imgs\\representations_vgg_face.pkl"
+    },
+    {
       "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
