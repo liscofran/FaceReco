@@ -9,6 +9,7 @@ import datetime
 import time
 import mysql.connector
 
+
 server_closed = False
 name = None
 face_match = False
