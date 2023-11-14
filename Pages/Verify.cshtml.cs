@@ -19,6 +19,5 @@ namespace FaceRecognition.Pages
         {
             // This method will handle GET requests (when the page is loaded)
         }
-
     }
 }

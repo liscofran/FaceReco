@@ -17,16 +17,8 @@
       "PackagePath": "staticwebassets\\imgs\\6382908075\\6382908075.jpg"
     },
     {
-      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\6382908103\\6382908103.jpg",
-      "PackagePath": "staticwebassets\\imgs\\6382908103\\6382908103.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\6383010987\\6383010987.jpg",
-      "PackagePath": "staticwebassets\\imgs\\6383010987\\6383010987.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\6383082793\\6383082793.jpg",
-      "PackagePath": "staticwebassets\\imgs\\6383082793\\6383082793.jpg"
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\bDjPz0rv7E\\bDjPz0rv7E.jpeg",
+      "PackagePath": "staticwebassets\\imgs\\bDjPz0rv7E\\bDjPz0rv7E.jpeg"
     },
     {
       "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\imgs\\representations_vgg_face.pkl",
@@ -267,6 +259,62 @@
     {
       "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_09_21.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_09_21.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_04.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_04.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_05.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_05.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_22.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_22.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_23.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_23.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_25.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_25.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_29_1579a3f2gB.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_29_1579a3f2gB.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_29_7GJ8i9t5e3.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_29_7GJ8i9t5e3.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_30_1579a3f2gB.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_30_1579a3f2gB.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_30_38dyJue7oP.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_30_38dyJue7oP.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_30_7GJ8i9t5e3.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_30_7GJ8i9t5e3.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_31_1579a3f2gB.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_31_1579a3f2gB.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_31_38dyJue7oP.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_31_38dyJue7oP.txt"
+    },
+    {
+      "Id": "C:\\Users\\Utente\\Desktop\\.NET\\Volantini\\trunk\\FaceRecognition\\Volantini\\wwwroot\\timestamps\\2023_10_31_7GJ8i9t5e3.txt",
+      "PackagePath": "staticwebassets\\timestamps\\2023_10_31_7GJ8i9t5e3.txt"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.FaceRecognition.Microsoft.AspNetCore.StaticWebAssets.props",
